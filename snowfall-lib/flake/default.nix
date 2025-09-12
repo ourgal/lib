@@ -112,6 +112,7 @@ rec {
       systems = snowfall-lib.system.create-systems {
         systems = full-flake-options.systems or { };
         homes = full-flake-options.homes or { };
+        transform = full-flake-options.modules.system-transform or { };
       };
       hosts = snowfall-lib.attrs.merge-shallow [
         (full-flake-options.systems.hosts or { })

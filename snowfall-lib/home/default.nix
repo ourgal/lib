@@ -250,10 +250,16 @@ in
     ## ```
     #@ Attrs -> [Module]
     create-home-system-modules =
-      users:
+      {
+        users,
+        transform ? { },
+      }:
       let
         created-users = create-homes { homes = users; };
-        user-home-modules = snowfall-lib.module.create-modules { src = "${user-modules-root}/home"; };
+        user-home-modules = snowfall-lib.module.create-modules {
+          src = "${user-modules-root}/home";
+          inherit transform;
+        };
 
         shared-modules = builtins.map (module: { config.home-manager.sharedModules = [ module ]; }) (
           users.modules or [ ]
