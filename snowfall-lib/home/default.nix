@@ -115,7 +115,8 @@ in
         modules = [
           path
           ../../modules/home/user/default.nix
-        ] ++ modules;
+        ]
+        ++ modules;
 
         specialArgs = {
           inherit name system;
@@ -306,6 +307,7 @@ in
                   systems
                   host
                   ;
+                inherit (snowfall-config) namespace;
 
                 lib = home-lib;
 
